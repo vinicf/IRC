@@ -1,5 +1,5 @@
-# IRC
-Repositório de Códigos da Prática Laboratorial da UC Introdução às Redes de Computadores
+# IRC PL code base
+
 The run-docker.sh script uses the vinicf/core-9.0.3:latest image
 The image has CORE 9.0.3 installed with all IRC TP dependencies.
 It has been created using the Dockerfile.ubuntu
