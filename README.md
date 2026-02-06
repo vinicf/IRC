@@ -9,14 +9,15 @@ It has been created using the Dockerfiles available in this repo (Dockerfile.amd
 The script  runs a container and it also does the following:
 - Creates a shared volume defined in SHARED variable ($SHARED:/shared).
 - Shares the host display to run core-gui.
-- Forwards the host's 2000 port to container's 22.
-- Injects the ~/.ssh/id_ed25519.pub as an authorized host key (it does not create it previously).
+- Forwards the host's 2000 port to container's 22, enabling external ssh access.
+- Injects the ~/.ssh/id_ed25519.pub as an authorized host key (it does not create the keypair previously).
 
 
 ## How to run it
-- Clone the repo in your home directory (it uses $HOME as a path reference): git clone https://github.com/vinicf/IRC.git
+- Clone the repo in your home directory (it uses $HOME as a path reference for the shared directory): git clone https://github.com/vinicf/IRC.git
 - If you do not have an id_ed25519 and id_ed25519.pub key pairs, create it using the command: ssh-keygen -t ed25519
-- Run the run-docker.sh script
+- Make sure the run-docker.sh has execute permissions, recommended permissions: chmod 740 run-docker.sh
+- Run the run-docker.sh script: ./run-docker.sh
 - ENJOY
 
 ## What else
