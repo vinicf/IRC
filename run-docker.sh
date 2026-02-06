@@ -4,6 +4,13 @@ SHARED="$HOME/IRC/shared"
 PLATFORM=$(uname)
 ARCH=$(uname -m)
 
+IMAGE="vinicf/core-9.0.3:latest"
+
+echo "Architecture: $ARCH"
+echo "Using image: $IMAGE"
+
+
+
 if [ -n "$1" ]; then
     SHARED=$(readlink -f $1)
     echo Using custom shared directory: $SHARED
