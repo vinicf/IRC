@@ -2,12 +2,19 @@
 
 SHARED="$HOME/IRC/shared"
 PLATFORM=$(uname)
+ARCH=$(uname -m)
 
 if [ -n "$1" ]; then
     SHARED=$(readlink -f $1)
     echo Using custom shared directory: $SHARED
 else 
     echo Using default shared directory: $SHARED
+fi
+
+if [ ! -f ~/.ssh/id_ed25519.pub ]; then
+    echo "Error: SSH public key ~/.ssh/id_ed25519.pub not found."
+    echo "Please generate it using: ssh-keygen -t ed25519"
+    exit 1
 fi
 
 if [ "$PLATFORM" = "Darwin" ]; then
@@ -21,7 +28,7 @@ docker run -itd --rm \
     -e DISPLAY=host.docker.internal:0 \
     --privileged \
     --entrypoint core-daemon \
-    vinicf/core-9.0.3:latest
+    $IMAGE
 else
 xhost +local:root
 docker run -itd --rm \
@@ -34,7 +41,7 @@ docker run -itd --rm \
     -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
     --privileged \
     --entrypoint core-daemon \
-    vinicf/core-9.0.3:latest
+    $IMAGE
 fi
 # afterwards you may run
 sleep 3
